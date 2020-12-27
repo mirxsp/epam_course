@@ -1,0 +1,16 @@
+for (int i = Items.Count - 1; i >= 0; i--)
+                {
+                    IPunctuation punctuation = Items[i] as IPunctuation;
+                    if (punctuation != null && punctuation.Value != null && punctuation.Value.Length > 0)
+                    {
+                        int indexD = punctuation.Value.IndexOf('.'),
+                            indexE = punctuation.Value.IndexOf('!'),
+                            indexI = punctuation.Value.IndexOf('?');
+                        if (indexD > indexE && indexD > indexI) return SentenceTypes.Declarative;
+                        if (indexE > indexD && indexE > indexI) return SentenceTypes.Exclamative;
+                        if (indexI > indexE && indexI > indexD) return SentenceTypes.Interrogative;
+                        //if (indexI == indexD && indexD == indexE && indexE == -1) { Console.WriteLine("!"); return SentenceTypes.Undefined; }
+
+                    }
+                }
+                return SentenceTypes.Undefined;

@@ -1,0 +1,76 @@
+a
+a                              2:1 2 
+also                           2:2 
+and                            3:1 2 
+are                            4:1 2 
+b
+body                           1:2 
+bond                           1:2 
+by                             1:2 
+c
+called                         2:2 
+carbohydrates                  1:1 
+common                         1:2 
+composed                       2:1 2 
+compound                       2:2 
+d
+disaccharide                   1:1 
+disaccharides                  1:2 
+double                         1:2 
+e
+examples                       1:2 
+f
+food                           1:1 
+for                            1:1 
+fructose                       3:1 2 
+g
+galactose                      2:2 
+generic                        1:1 
+glucose                        5:1 2 
+glycosidic                     1:2 
+granulated                     1:1 
+h
+hydrolysed                     1:2 
+i
+in                             2:1 2 
+include                        1:2 
+into                           1:2 
+is                             1:1 
+j
+joined                         1:2 
+l
+lactose                        1:2 
+m
+maltose                        1:2 
+many                           1:1 
+molecules                      2:2 
+monosaccharides                2:2 
+n
+name                           1:1 
+o
+of                             4:1 2 
+or                             2:1 2 
+r
+refers                         1:1 
+regular                        1:1 
+s
+simple                         2:2 
+soluble                        1:1 
+sucrose                        2:1 2 
+sugar                          5:1 2 
+sugars                         5:2 
+sweet                          1:1 
+t
+table                          2:1 2 
+tasting                        1:1 
+the                            2:1 2 
+to                             1:1 
+two                            2:2 
+u
+used                           1:1 
+w
+which                          1:1 
+
+Simple sugars, also called monosaccharides, include glucose, fructose, and galactose. In the body, compound sugars are hydrolysed into simple sugars.
+ is the generic name for -tasting, soluble carbohydrates, many of  are used in food! Common examples are sucrose ( ) (glucose  fructose), lactose (glucose  galactose), and maltose (two molecules of glucose)!  , granulated , or regular , refers to sucrose, a disaccharide composed of glucose and fructose?
+ Compound sugars, also called disaccharides or double sugars, are molecules composed of two monosaccharides joined by a glycosidic bond.
