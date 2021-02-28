@@ -21,6 +21,7 @@ namespace WEB.Controllers
         private UnitOfWork unit = new UnitOfWork();
 
         // GET: Managers
+	[Authorize]
         public ActionResult Index()
         {
 
@@ -29,6 +30,7 @@ namespace WEB.Controllers
         }
 
         [HttpPost]
+	[Authorize]
         public ActionResult GetManagers(string filterType = "all", string filterValue = "")
         {
             object resObj = null;
@@ -56,6 +58,7 @@ namespace WEB.Controllers
             return Content(result, "application/json");
         }
 
+	[Authorize]
         public ActionResult Search()
         {
             return View();
@@ -192,6 +195,7 @@ namespace WEB.Controllers
             }
         }
 
+	[Authorize]
         public ActionResult GetChart()
         {
             var managers = unit.ManagerRepository.Get().ToList<Manager>();
