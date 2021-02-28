@@ -1,0 +1,71 @@
+﻿@model WEB.Models.Client
+
+@{
+    ViewBag.Title = "Search Clients";
+}
+
+<h2>Search Items</h2>
+<div>
+    @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST" }))
+    {
+        <input id="filterValue" type="text" name="filterValue" />
+        <select id="filterType" name="filterTypeInput">
+            <option value="all" selected>All</option>
+            <option value="name">Name</option>
+            <option value="id">Id</option>
+        </select>
+        <input id="searchSubmit" onclick="event.preventDefault(); SubmitB();" type="submit" value="Поиск" />
+    }
+</div>
+
+<table id="clients-table" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+            function SubmitB() {
+                var form = $(this);
+                $("#clients-table tbody tr").remove();
+                var filterT = $("#filterType").val();
+                var filterV = $("#filterValue").val();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetClients")',
+                    dataType: 'json',
+                    data: { filterType: filterT, filterValue: filterV },
+                    success: function (data) {
+                         $.each(data, function (i, item) {
+                            var rows = "<tr>"
+                                + "<td>" + item.Id + "</td>"
+                                + "<td>" + item.Name + "</td>"
+                            if (@User.IsInRole("Admin").ToString().ToLower())
+                            {
+                                    rows += "<td><a href=\"/Clients/Edit/"+ item.Id + "\"> Edit </ a ></td>"
+                                    + "<td><a href=\"/Clients/Delete/"+item.Id+"\" > Delete</a >"
+                            }
+                            rows += "</tr>"
+                             $('#clients-table tbody').append(rows);
+                        });
+                    },
+                    error: function (ex) {
+                        alert("clients loading error");
+                    }
+                });
+            }
+    </script>
+}

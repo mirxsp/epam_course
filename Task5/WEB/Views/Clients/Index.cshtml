@@ -1,0 +1,67 @@
+﻿@model WEB.Models.Client
+
+@{
+    ViewBag.Title = "Clients";
+}
+
+<h2>Clients</h2>
+
+<div>
+    @if (User.IsInRole("Admin"))
+    {
+        @:<a href="/Clients/Create/"><button> Create New</button></a>
+    }
+    <a href="/Clients/Search/"><button> Search</button></a>
+</div>
+<table class="table" id="clients-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+
+
+
+</table>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            LoadData();
+        });
+        function LoadData() {
+             $("#clients-table tbody tr").remove();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetClients")',
+                    dataType: 'json',
+                    data: { filterType: 'all' },
+                    success: function (data) {
+                        $.each(data, function (i, item) {
+                            var rows = "<tr>"
+                                + "<td>" + item.Id + "</td>"
+                                + "<td>" + item.Name + "</td>"
+                            if (@User.IsInRole("Admin").ToString().ToLower())
+                            {
+                                    rows += "<td><a href=\"/Clients/Edit/"+ item.Id + "\"> Edit </ a ></td>"
+                                    + "<td><a href=\"/Clients/Delete/"+item.Id+"\" > Delete</a >"
+                            }
+                            rows += "</tr>"
+                            $('#clients-table tbody').append(rows);
+                        });
+
+                    },
+                    error: function (ex) {
+                        alert("sales loading error");
+                    }
+                });
+        }
+    </script>
+}

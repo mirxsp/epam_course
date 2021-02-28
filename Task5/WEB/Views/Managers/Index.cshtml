@@ -1,0 +1,69 @@
+﻿@model WEB.Models.Manager
+
+@{
+    ViewBag.Title = "Managers";
+}
+
+<h2>Managers</h2>
+
+<div>
+    @if (User.IsInRole("Admin"))
+    {
+        @:<a href="/Managers/Create/"><button> Create New</button></a>
+    }
+    <a href="/Managers/Search/"><button> Search</button></a>
+</div>
+<table class="table" id="managers-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<h2>Statistic</h2>
+<div class="stats">
+    <img src="@Url.Action("GetChart")" alt="Chart" class="center" />
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            LoadData();
+        });
+        function LoadData() {
+            $("#managers-table tbody tr").remove();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetManagers")',
+                    dataType: 'json',
+                    data: { filterType: 'all' },
+                    success: function (data) {
+                        $.each(data, function (i, item) {
+                            var rows = "<tr>"
+                                + "<td>" + item.Id + "</td>"
+                                + "<td>" + item.Name + "</td>"
+                            if (@User.IsInRole("Admin").ToString().ToLower())
+                            {
+                                rows += "<td><a href=\"/Managers/Edit/"+ item.Id + "\"> Edit </ a ></td>"
+                                    + "<td><a href=\"/Managers/Delete/"+item.Id+"\" > Delete</a >"
+                            }
+                            rows += "</tr>"
+                            $('#managers-table tbody').append(rows);
+                        });
+
+                    },
+                    error: function (ex) {
+                        alert("managers loading error");
+                    }
+                });
+        }
+    </script>
+}
